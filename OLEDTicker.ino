@@ -13,8 +13,8 @@
 //--------------------------------------------
 
 
-char ssid[] = "TELUS2358";       // SSID
-char password[] = "";  // your network key
+char ssid[] = "TELUS0183";       // SSID
+char password[] = "6z5g4hbdxi";  // your network key
 
 #define PIN 9            //Neopixel Data Pin  [ESP8266 - GPIO9]
 #define NUM_LEDS 6       //Length of Neopixel Strand
