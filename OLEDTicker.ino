@@ -48,7 +48,7 @@ char ssid[] = "TELUS0183";       // SSID
 char password[] = "6z5g4hbdxi";  // your network key
 
 #define PIN 9            //Neopixel Data Pin  [ESP8266 - GPIO9]
-#define NUM_LEDS 6       //Length of Neopixel Strand
+#define NUM_LEDS 16       //Length of Neopixel Strand
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = Arduino pin number (most are valid)
@@ -87,8 +87,10 @@ void setup() {
 
   u8g2.begin();
   u8g2.clearBuffer();          // clear the internal memory
-  u8g2.setFont(u8g2_font_ncenB08_tr);  // choose a suitable font
-  u8g2.drawStr(0, 10, "Connecting"); // write something to the internal memory
+  //u8g2.setFont(u8g2_font_ncenB08_tr);  // 8 pixel height
+   u8g2.setFont(u8g2_font_ncenB12_tr );  // 12 pixel height
+  
+  u8g2.drawStr(0, 12, "Connecting"); // write something to the internal memory
   u8g2.sendBuffer();          // transfer internal memory to the display
 
   pinMode(LED_GREEN, OUTPUT);
@@ -115,7 +117,7 @@ void setup() {
   Serial.println(ip);
 
   u8g2.clearBuffer();               // clear the internal memory
-  u8g2.drawStr(0, 10, "Connected"); // write to the internal memory
+  u8g2.drawStr(0, 12, "Connected"); // write to the internal memory
   u8g2.sendBuffer();                // transfer internal memory to the display
 
   ConnectedWipe();
@@ -143,30 +145,32 @@ void printTickerData(String ticker) {
         
     // u8g2.drawStr(0,30,"hello");  // write something to the internal memory
 
-    u8g2.setCursor(0, 10);
+    u8g2.setFont(u8g2_font_ncenB12_tr );  // 12 pixel height
+    u8g2.setCursor(0, 12);
     u8g2.print(ticker);
 
-
-    u8g2.setCursor(50, 10);
+    u8g2.setCursor(70, 12);
     u8g2.print(response.price_usd);
 
-    u8g2.setCursor(0, 25);
+    
+    u8g2.setFont(u8g2_font_ncenB10_tr );  // 11 pixel height
+    u8g2.setCursor(0, 30);
     u8g2.print("1hr");
     
-    u8g2.setCursor(0, 40);
+    u8g2.setCursor(0, 45);
     u8g2.print(response.percent_change_1h);
 
-    u8g2.setCursor(30, 25);
+    u8g2.setCursor(47, 30);
     u8g2.print("24hr");
     
-    u8g2.setCursor(30, 40);
+    u8g2.setCursor(47, 45);
     u8g2.print(response.percent_change_24h);   
 
 
-    u8g2.setCursor(70, 25);
+    u8g2.setCursor(100, 30);
     u8g2.print("7d");
     
-    u8g2.setCursor(70, 40);
+    u8g2.setCursor(95, 45);
     u8g2.print(response.percent_change_7d);   
 
     
@@ -240,7 +244,7 @@ void loop() {
   unsigned long timeNow = millis();
 
   if ((timeNow > api_due_time))  {
-    printTickerData("bitcoin");
+    printTickerData("Ark");
     //printTickerData("ethereum");
     // printTickerData("dogecoin");
     api_due_time = timeNow + api_mtbs;
