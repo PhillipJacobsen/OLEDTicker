@@ -151,16 +151,25 @@ void printTickerData(String ticker) {
     u8g2.print(response.price_usd);
 
     u8g2.setCursor(0, 25);
-    u8g2.print("24hr");
+    u8g2.print("1hr");
     
     u8g2.setCursor(0, 40);
-    u8g2.print(response.percent_change_24h);
+    u8g2.print(response.percent_change_1h);
 
-    u8g2.setCursor(50, 25);
+    u8g2.setCursor(30, 25);
+    u8g2.print("24hr");
+    
+    u8g2.setCursor(30, 40);
+    u8g2.print(response.percent_change_24h);   
+
+
+    u8g2.setCursor(70, 25);
     u8g2.print("7d");
     
-    u8g2.setCursor(50, 40);
+    u8g2.setCursor(70, 40);
     u8g2.print(response.percent_change_7d);   
+
+    
 
     u8g2.sendBuffer();          // transfer internal memory to the display
 
