@@ -1,1 +1,1 @@
-# NeoPixelTicker
+# OLEDTicker
